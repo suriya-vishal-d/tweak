@@ -7,4 +7,3 @@ export type ThemeSetting = 'light' | 'dark' | 'system'
 
 /** The resolved, effective theme applied to the DOM */
 export type ResolvedTheme = 'light' | 'dark'
-

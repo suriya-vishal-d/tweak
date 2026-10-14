@@ -1,4 +1,5 @@
-mod commands;
+pub mod commands;
+pub mod http;
 
 use tauri::Manager;
 
@@ -6,16 +7,16 @@ use tauri::Manager;
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![commands::greet])
+        .invoke_handler(tauri::generate_handler![commands::http::send_http_request])
         .setup(|app| {
             #[cfg(debug_assertions)]
             {
-                let window = app.get_webview_window("main").unwrap();
-                window.open_devtools();
+                if let Some(window) = app.get_webview_window("main") {
+                    window.open_devtools();
+                }
             }
             Ok(())
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
-

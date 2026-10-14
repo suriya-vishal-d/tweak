@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@/store'
-import { ThemeToggle } from '@/components'
+import { ThemeToggle, RequestBuilder } from '@/components'
 import styles from './App.module.css'
 
 function App() {
@@ -18,14 +18,8 @@ function App() {
         </header>
 
         <main className={styles.main}>
-          <div className={styles.hero}>
-            <h2 className={styles.heroTitle}>Welcome to Tweak</h2>
-            <p className={styles.heroSubtitle}>
-              A lightweight, offline API client for Linux.
-            </p>
-            <p className={styles.heroNote}>
-              🚧 <strong>Milestone M0 complete.</strong> Request builder coming in M1.
-            </p>
+          <div className={styles.content}>
+            <RequestBuilder />
           </div>
         </main>
       </div>
@@ -34,4 +28,3 @@ function App() {
 }
 
 export default App
-

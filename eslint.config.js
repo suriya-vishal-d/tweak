@@ -9,13 +9,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 export default [
   // Global ignores
   {
-    ignores: [
-      'dist/**',
-      'src-tauri/target/**',
-      'node_modules/**',
-      'coverage/**',
-      '*.min.js',
-    ],
+    ignores: ['dist/**', 'src-tauri/target/**', 'node_modules/**', 'coverage/**', '*.min.js'],
   },
 
   // Base JS rules
@@ -97,4 +91,3 @@ export default [
     },
   },
 ]
-

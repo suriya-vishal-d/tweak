@@ -9,6 +9,7 @@
 **Goal:** Scaffold the project with tooling, theming, and folder structure. No functional API features yet.
 
 ### Tasks
+
 - [x] Scaffold Tauri v2 + React + TypeScript + Vite (no nesting)
 - [x] Add ESLint (flat config), Prettier, Vitest
 - [x] `npm run lint` and `npm test` pass
@@ -17,6 +18,7 @@
 - [x] Folder layout: `src/components`, `src/store`, `src/lib`, `src/types`, `src/styles`, `docs/`, `schemas/`
 
 ### Deliverables
+
 - Working `npm run dev` (Vite dev server)
 - Working `npm run tauri dev` (Tauri window)
 - Green lint + tests
@@ -24,64 +26,133 @@
 
 ---
 
-## Milestone M1 — Request Builder (Core UI)
+## Milestone M1 — First Request Through Rust ✅
 
-**Goal:** Build the core request-sending UI: URL bar, method selector, headers/body tabs, response panel.
+**Goal:** Send an HTTP request from the frontend through Rust via Tauri IPC using `reqwest` and display the raw response.
 
 ### Tasks
-- [ ] `RequestBar` component — URL input + HTTP method dropdown (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)
-- [ ] `HeadersEditor` component — key/value pair list with add/remove rows
-- [ ] `BodyEditor` component — raw text area with content-type selector (JSON, plain, form-data)
-- [ ] `ResponsePanel` component — status code badge, response time, response body (syntax-highlighted JSON)
-- [ ] Tauri command `send_request` in Rust using `reqwest` (offline, no auth)
-- [ ] Zustand store `useRequestStore` — holds current request state
-- [ ] Vitest unit tests for store and utility functions
 
-### Deliverables
-- User can type a URL, pick a method, add headers/body, and click Send
-- Response displayed in the panel (status, time, body)
-- All lint + tests green
+- [x] Remove starter `greet` command
+- [x] Tauri command `send_http_request` in Rust using `reqwest` with timeout support
+- [x] Typed `HttpResponse` (status, headers pairs, body, elapsed_ms, size_bytes, is_binary)
+- [x] Typed `HttpError` (invalid URL, network failure, timeout, invalid method, invalid header)
+- [x] Request logic in dedicated module (`src-tauri/src/http/`)
+- [x] Frontend wrapper in `src/lib/` and minimal UI (method select, URL input, send button, raw response output)
+- [x] Rust unit tests with local test server and frontend tests
 
 ---
 
-## Milestone M2 — Collections & History
+## Milestone M2A — Request Builder
 
-**Goal:** Persist requests as named collections and maintain a request history.
+**Goal:** Build the full request builder UI with dedicated parameter, header, body, and authentication tabs.
 
 ### Tasks
-- [ ] JSON schema for collections (`schemas/collection.schema.json`)
-- [ ] Tauri commands: `save_collection`, `load_collections`, `delete_collection`
-- [ ] `CollectionSidebar` component — tree view of saved requests
-- [ ] `HistoryPanel` component — last N requests with timestamps
-- [ ] File-based storage via Tauri's app data directory (no remote DB)
-- [ ] Import/Export collection as JSON file
+
+- [ ] Query params tab (key-value editor synced with URL)
+- [ ] Headers tab (key-value editor with enable/disable toggles)
+- [ ] Body tab (none, JSON, raw text, form-urlencoded)
+- [ ] Auth tab (Bearer token, Basic auth)
 
 ---
 
-## Milestone M3 — Environments & Variables
+## Milestone M2B — Response Viewer
 
-**Goal:** Support named environments with variable substitution in requests.
+**Goal:** Rich response viewer with status formatting, headers, clipboard actions, cancellation, and granular timing.
 
 ### Tasks
-- [ ] JSON schema for environments (`schemas/environment.schema.json`)
-- [ ] `EnvironmentEditor` component — manage key/value env variables
-- [ ] Variable substitution in URL and headers (`{{variable}}` syntax)
-- [ ] Tauri commands: `save_environment`, `load_environments`
+
+- [ ] Status badge and response status text
+- [ ] Pretty JSON viewer and raw view
+- [ ] Response headers tab
+- [ ] Copy response body to clipboard
+- [ ] Cancel in-flight request (requires Rust-side cancellation)
+- [ ] Timing and sizing metrics: total ms, approximate time to first byte / TTFB (time until response headers arrive), payload size
 
 ---
 
-## Milestone M4 — Polish & Release Prep
+## Milestone M3 — Plain-File Persistence
 
-**Goal:** Make it shippable as an AUR package / AppImage.
+**Goal:** Save and load requests as plain files in a project folder.
 
 ### Tasks
-- [ ] App icon (SVG → PNG sizes via script)
-- [ ] `.desktop` file for Linux application menu
-- [ ] PKGBUILD for AUR
-- [ ] AppImage build via `tauri build`
-- [ ] README with install instructions
-- [ ] Keyboard shortcuts (Ctrl+Enter to send, Ctrl+S to save, etc.)
-- [ ] Accessibility audit (ARIA labels, keyboard navigation)
+
+- [ ] Save request to plain file in project directory
+- [ ] Open and load request from plain file
+- [ ] Project folder browser / file sidebar
+
+---
+
+## Milestone M4 — Environments & Variables
+
+**Goal:** Support named environments with dynamic variable replacement.
+
+### Tasks
+
+- [ ] Environment manager with key-value variable editor
+- [ ] Variable substitution in URL, headers, params, body, and auth using `{{variable}}` syntax
+- [ ] Active environment switcher
+
+---
+
+## Milestone M5 — History, Tabs & cURL
+
+**Goal:** Request history tracking, multi-tab editing, and cURL import/export.
+
+### Tasks
+
+- [ ] Request history log with timestamps
+- [ ] Multi-tab request workspace
+- [ ] Keyboard shortcuts (Ctrl+Enter to send, Ctrl+S to save)
+- [ ] Import from cURL command
+- [ ] Export request as cURL command
+
+---
+
+## Milestone M6 — Latency Test
+
+**Goal:** Send the same request N times with a configurable delay to measure latency and reliability.
+
+### Tasks
+
+- [ ] Configure iteration count (N) and delay between requests
+- [ ] Sequential execution of the configured request
+- [ ] Display min, avg, and max response time
+- [ ] Display success and failure counts
+
+---
+
+## Milestone M7 — Packaging & README
+
+**Goal:** Release packaging and documentation.
+
+### Tasks
+
+- [ ] README with installation and usage instructions
+- [ ] App icon and `.desktop` file for Linux application menu
+- [ ] Release packages (AUR PKGBUILD, AppImage)
+
+### Notes
+
+- **TLS backend:** rustls uses aws-lc-rs, which compiles C code, so CI needs a C compiler (and cmake if the build asks for it).
+- **glibc compatibility:** Build release packages on an older Ubuntu LTS image
+  (e.g. Ubuntu 22.04 / glibc 2.35) so the resulting binaries run on a wider range
+  of distributions without requiring users to have the latest glibc.
+
+---
+
+## Later
+
+The following features are deferred until after the active milestones above:
+
+- Test runner
+- Git panel
+- OpenAPI import
+- CLI
+- Diffing
+- WebSocket
+- Mock server
+- Load testing
+- Multipart form-data
 
 ---
 
@@ -91,4 +162,3 @@
 - No login / OAuth
 - No analytics or telemetry
 - No Windows / macOS builds (focus: Arch Linux)
-

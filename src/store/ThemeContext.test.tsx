@@ -85,13 +85,19 @@ describe('useTheme', () => {
     // Start at system (default)
     expect(result.current.setting).toBe('system')
 
-    act(() => { result.current.cycleTheme() })
+    act(() => {
+      result.current.cycleTheme()
+    })
     expect(result.current.setting).toBe('light')
 
-    act(() => { result.current.cycleTheme() })
+    act(() => {
+      result.current.cycleTheme()
+    })
     expect(result.current.setting).toBe('dark')
 
-    act(() => { result.current.cycleTheme() })
+    act(() => {
+      result.current.cycleTheme()
+    })
     expect(result.current.setting).toBe('system')
   })
 
@@ -126,4 +132,3 @@ describe('useTheme', () => {
     consoleSpy.mockRestore()
   })
 })
-

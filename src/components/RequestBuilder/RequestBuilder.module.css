@@ -1,0 +1,303 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.requestBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg-surface);
+  padding: var(--space-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.methodSelect {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.methodSelect:focus-visible {
+  border-color: var(--accent);
+}
+
+.urlInput {
+  flex: 1;
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-3);
+  outline: none;
+}
+
+.urlInput::placeholder {
+  color: var(--text-muted);
+}
+
+.sendButton {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: background-color var(--transition-fast);
+}
+
+.sendButton:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.sendButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bodyToggleBar {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.toggleBodyButton {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  padding: 0 var(--space-1);
+}
+
+.toggleBodyButton:hover {
+  text-decoration: underline;
+}
+
+.bodySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.bodyLabel {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bodyTextarea {
+  width: 100%;
+  min-height: 100px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  resize: vertical;
+  outline: none;
+}
+
+.bodyTextarea:focus-visible {
+  border-color: var(--accent);
+}
+
+/* Error banner */
+.errorCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--status-error);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.errorTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--status-error);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.errorKindBadge {
+  background: var(--bg-elevated);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+}
+
+.errorMessage {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+/* Response section */
+.responseSection {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.responseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.responseMetrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text-on-accent);
+}
+
+.statusSuccess {
+  background-color: var(--status-success);
+}
+
+.statusRedirect {
+  background-color: var(--status-info);
+}
+
+.statusClientError {
+  background-color: var(--status-warning);
+}
+
+.statusServerError {
+  background-color: var(--status-error);
+}
+
+.metricItem {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.metricValue {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.binaryBadge {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-mono);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.tabGroup {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.tabButton {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tabButton:hover {
+  color: var(--text-primary);
+}
+
+.tabButtonActive {
+  background: var(--bg-surface);
+  border-color: var(--border-default);
+  color: var(--text-primary);
+}
+
+.responseBodyContainer {
+  padding: var(--space-4);
+  overflow-x: auto;
+  max-height: 450px;
+}
+
+.responseBody {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.headersList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.headerRow {
+  display: flex;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.headerName {
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 140px;
+}
+
+.headerValue {
+  color: var(--text-primary);
+}
