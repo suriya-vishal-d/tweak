@@ -1,0 +1,138 @@
+/* ============================================================
+   theme.css — CSS custom properties for light / dark themes
+   Applied via .theme-light / .theme-dark on <html>
+   ============================================================ */
+
+/* ---- Light theme (default) ---- */
+:root,
+html.theme-light {
+  color-scheme: light;
+
+  /* Backgrounds */
+  --bg-base: #f5f5f5;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ebebeb;
+  --bg-overlay: rgba(0, 0, 0, 0.08);
+
+  /* Text */
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --text-on-accent: #ffffff;
+
+  /* Accent / brand */
+  --accent: #5b68f0;
+  --accent-hover: #4654e0;
+  --accent-subtle: #e8eaff;
+
+  /* Borders */
+  --border-default: #d4d4d4;
+  --border-strong: #b0b0b0;
+
+  /* Status */
+  --status-success: #22c55e;
+  --status-warning: #f59e0b;
+  --status-error: #ef4444;
+  --status-info: #3b82f6;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+
+  /* Typography */
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+}
+
+/* ---- Dark theme ---- */
+html.theme-dark {
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --bg-base: #0f0f0f;
+  --bg-surface: #1a1a1a;
+  --bg-elevated: #252525;
+  --bg-overlay: rgba(255, 255, 255, 0.06);
+
+  /* Text */
+  --text-primary: #ededed;
+  --text-secondary: #a3a3a3;
+  --text-muted: #666666;
+  --text-on-accent: #ffffff;
+
+  /* Accent / brand */
+  --accent: #7c8aff;
+  --accent-hover: #9ba6ff;
+  --accent-subtle: #1e2040;
+
+  /* Borders */
+  --border-default: #2e2e2e;
+  --border-strong: #444444;
+
+  /* Status */
+  --status-success: #4ade80;
+  --status-warning: #fbbf24;
+  --status-error: #f87171;
+  --status-info: #60a5fa;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.50);
+}
+
+/* ---- System preference fallback (when no explicit class set) ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light):not(.theme-dark) {
+    color-scheme: dark;
+
+    --bg-base: #0f0f0f;
+    --bg-surface: #1a1a1a;
+    --bg-elevated: #252525;
+    --bg-overlay: rgba(255, 255, 255, 0.06);
+
+    --text-primary: #ededed;
+    --text-secondary: #a3a3a3;
+    --text-muted: #666666;
+    --text-on-accent: #ffffff;
+
+    --accent: #7c8aff;
+    --accent-hover: #9ba6ff;
+    --accent-subtle: #1e2040;
+
+    --border-default: #2e2e2e;
+    --border-strong: #444444;
+
+    --status-success: #4ade80;
+    --status-warning: #fbbf24;
+    --status-error: #f87171;
+    --status-info: #60a5fa;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.50);
+  }
+}
+
